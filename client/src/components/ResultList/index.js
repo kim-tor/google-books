@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ResultListItem from "../ResultListItem";
+import ResultListItem from "../ResultListItem/index.js";
 
 class ResultList extends Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SavedListItem(props) {
+function ResultListItem(props) {
     const {title, authors, image, link, description, deleteGoogleBook} = props
     return (
         <div>
@@ -19,4 +19,4 @@ function SavedListItem(props) {
     )
 }
 
-export default SavedListItem;
+export default ResultListItem;

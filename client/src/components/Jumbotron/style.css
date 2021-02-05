@@ -7,8 +7,9 @@
 }
 
 .myText {
-    color: rgb(38, 61, 61);
-    font-size: 30px;
+    color: white;
+    font-size: 40px;
+    text-shadow: 2px 2px 8px rgb(19, 161, 140);
     font-weight: bold;
     position: relative;
     transform: translateY(100px);
