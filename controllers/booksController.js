@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the googleBookssController
+// Defining methods for the googleBooksController
 
 module.exports = {
   // search

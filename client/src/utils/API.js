@@ -1,4 +1,3 @@
-  
 // Required module
 import axios from "axios";
 
