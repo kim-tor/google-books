@@ -3,7 +3,7 @@ import "./style.css";
 
 function Jumbotron() {
   return (
-    <div className="jumbotron"
+    <div className="jumbotron-m"
     >
       <div className="jumbotron">
         <h1 className="display-4 text-center myText">Google Books Search</h1>
