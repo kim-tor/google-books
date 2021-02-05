@@ -7,8 +7,10 @@
 }
 
 .myText {
-    color: white;
+    color: rgb(38, 61, 61);
+    font-size: 30px;
     font-weight: bold;
     position: relative;
-    transform: translateY(100px)
+    transform: translateY(100px);
+    text-align: center;
 }
