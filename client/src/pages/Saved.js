@@ -15,28 +15,26 @@ class Saved extends Component {
         this.getBooks()
     }
 
-    deleteGoogleBook = currentBook => {
-        API.deleteBook( currentBook.id )
-        .then(res => {
-            console.log("You deleted this book:", res);
-            this.getBooks();
-        })
-        .catch(err => {
-            console.log("This is the error", err);
-        })
-    }
-
     getBooks = () => {
         API.getBooks()
-        .then(res => {
-            this.setState({
-                savedBooks: res.data
+            .then(res =>
+                this.setState({
+                    savedBooks: res.data
+                })
+            )
+            // console.log(res);
+            .catch(err => console.log(err));
+    }
+
+    deleteGoogleBook = currentBook => {
+        API.deleteBook(currentBook.id)
+            .then(res => {
+                console.log("You deleted this book:", res);
+                this.getBooks();
             })
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .catch(err => {
+                console.log("This is the error", err);
+            })
     }
 
 
@@ -45,18 +43,24 @@ class Saved extends Component {
             <div>
                 <Nav />
                 <Container fluid>
-                <Jumbotron />
-                {this.state.savedBooks.length ? (
-                    <SavedList 
-                    bookState={this.state.savedBooks}
-                    deleteGoogleBook={this.deleteGoogleBook}
-                    >
+                    <Jumbotron />
+                    {this.state.savedBooks.length ? (
+                        <SavedList
+                            bookState={this.state.savedBooks}
+                            Button={() => (
+                                <button
+                                    onClick={() => this.deleteGoogleBook = {(book.id)}
+                                >
+
+                                </button>
+                            )}
+                        />)
                     </SavedList>
                 ) : (
-                    <h5>No results to display</h5>
+                <h5>No results to display</h5>
                 )}
                 </Container>
-            </div>
+            </div >
         )
     }
 }
