@@ -51,18 +51,6 @@ class Home extends Component {
         this.getBooks(this.state.q);
     };
 
-    // handleBookSave = id => {
-    //     const book = this.state.books.find(book => book.id === id);
-    //     API.saveBook({
-    //         googleId: book.id,
-    //         title: book.title,
-    //         authors: book.authors,
-    //         description: book.description,
-    //         image: book.image,
-    //         link: book.link,
-    //     }).then(() => this.getBooks());
-    // };
-
     render() {
         return (
             <div>
@@ -81,35 +69,8 @@ class Home extends Component {
                     <Row>
                         <Col size="md-12">
                             <Card title="Results">
-                                {/* {this.state.length ? (
-                                    <List>
-                                        {this.state.books.map(book => (
-                                            <Book
-                                                key={book.id}
-                                                title={book.volumeInfo.title}
-                                                subtitle={book.volumeInfo.subtitle}
-                                                link={book.volumeInfo.infoLink}
-                                                authors={book.volumeInfo.authors}
-                                                description={book.volumeInfo.description}
-                                                image={book.volumeInfo.image}
-                                                Button={() => (
-                                                    <button
-                                                        onClick={() => this.handleBookSave(book.id)}
-                                                        className="btn btn-primary ml-2"
-                                                    >
-                                                        Save
-                                                    </button>
-                                                )}
-                                            />
-                                        ))}
-                                    </List>
-                                ) : (
-                                    <h2 className="text-center">{this.state.message}</h2>
-                                )} */}
-                                <div className="container">
-                                    <h2>Results</h2>
-                                    <Results books={this.state.books} />
-                                </div>
+                                <h2>Results</h2>
+                                <Results books={this.state.books} />
                             </Card>
                         </Col>
                     </Row>
