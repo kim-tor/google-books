@@ -11,26 +11,21 @@ import Book from "../components/Book";
 class Home extends Component {
     state = {
         books: [],
-        q: "Harry Potter",
+        q: "",
     };
 
-    componentDidMount() {
-        this.getBooks(this.state.books);
-    };
-    // Create function to handle input data
-    handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value,
-        });
-    };
+    //  componentDidMount() {
+    //   this.getBooks();
+    // };
 
     // Create function to search for books through Google API
     getBooks = () => {
-        API.getBooks(this.state.books)
+        API.getBooks(this.state.q)
             .then(res =>
+                // console.log(res.data.items),
                 this.setState({
-                    books: res.data
+                    books: res.data.items,
+                    q: ""
                 })
             )
             .catch(() =>
@@ -41,10 +36,20 @@ class Home extends Component {
             );
     };
 
+        // Create function to handle input data
+        handleInputChange = (event) => {
+            const { name, value } = event.target;
+            this.setState({
+                [name]: value,
+            });
+        };
+    
+
     // Create function to handle form data submission
     handleFormSubmit = (event) => {
         event.preventDefault();
-        this.getBooks(this.state.books);
+        
+        this.getBooks();
     };
 
     handleBookSave = id => {
@@ -68,9 +73,9 @@ class Home extends Component {
                     <Col size="md-12">
                         <Card title="Book Search">
                             <Form
+                                q={this.state.q}
                                 handleInputChange={this.handleInputChange}
                                 handleFormSubmit={this.handleFormSubmit}
-                                q={this.state.q}
                             />
                         </Card>
                     </Col>

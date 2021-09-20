@@ -27,9 +27,16 @@ class Saved extends Component {
             .catch(err => console.log(err));
     }
 
-    handleBookDelete = id => {
-        API.deleteBook(id).then(res => this.getSavedBooks());
-    };
+    deleteGoogleBook = currentBook => {
+        API.deleteBook( currentBook.id )
+        .then(res => {
+            // console.log(res);
+            this.getSavedBooks();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 
     render() {
         return (
@@ -64,7 +71,7 @@ class Saved extends Component {
                         )}
 
                     </Card>
-                    
+
                 </Container>
             </div >
         )
