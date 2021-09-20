@@ -5,86 +5,106 @@ import Jumbotron from "../components/Jumbotron/index";
 import { Input, SubmitBtn } from "../components/Search/index";
 import API from "../utils/API";
 import ResultList from "../components/ResultList/index";
+import Book from "../components/Book";
 
 class Home extends Component {
-  state = {
-    books: [],
-    search: "",
-  };
+    state = {
+        books: [],
+        q: "",
+    };
 
-  // Create function to handle input data
-  handleInputChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  // Create function to search for books through Google API
-  searchBooks = () => {
-    API.googleBooks(this.state.search)
-      .then((res) => {
-        console.log("This is res.data", res.data.items);
+    // Create function to handle input data
+    handleInputChange = (event) => {
+        const { name, value } = event.target;
         this.setState({
-          books: res.data.items,
-          search: "",
+            [name]: value,
         });
-      })
-      .catch((err) => console.log(err));
-  };
+    };
 
-  // Create function to handle form data submission
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    this.searchBooks();
-  };
+    // Create function to search for books through Google API
+    getBooks = () => {
+        API.getBooks(this.state.q)
+            .then(res =>
+                this.setState({
+                    books: res.data
+                })
+            )
+            .catch(() =>
+                this.setState({
+                    books: [],
+                    message: "No Books Found"
+                })
+            );
+    };
 
-  saveGoogleBook = (currentBook) => {
-    console.log("This is the current book", currentBook);
-    API.saveBook({
-      id: currentBook.id,
-      title: currentBook.title,
-      authors: currentBook.authors,
-      description: currentBook.description,
-      image: currentBook.image,
-      link: currentBook.link,
-    })
-      .then((res) => console.log("Successful POST to DB!", res))
-      .catch((err) => console.log("this is the error", err));
-  };
+    // Create function to handle form data submission
+    handleFormSubmit = (event) => {
+        event.preventDefault();
+        this.getBooks();
+    };
 
-  render() {
-    return (
-      <div>
-        <Nav />
-        <Container fluid>
-          <Jumbotron />
-          <form>
-            <h5>Search for books</h5>
-            <Input
-              value={this.state.search}
-              onChange={this.handleInputChange}
-              name="search"
-              placeholder="e.g. Harry Potter"
-            />
-            <SubmitBtn onClick={this.handleFormSubmit} />
-          </form>
+    handleBookSave = id => {
+        const book = this.state.books.find(book => book.id === id);
+        API.saveBook({
+            googleId: book.id,
+            title: book.title,
+            authors: book.authors,
+            description: book.description,
+            image: book.image,
+            link: book.link,
+        }).then(() => this.getBooks());
+    };
 
-          {this.state.books.length ? (
-            <ResultList
-              bookState={this.state.books}
-              saveGoogleBook={this.saveGoogleBook}
-            ></ResultList>
-          ) : (
+    render() {
+        return (
             <div>
-              <hr />
-              <p style={{ fontStyle: "italic" }}>No results to display</p>
+                <Nav />
+                <Container fluid>
+                    <Jumbotron />
+                    <Col size="md-12">
+                        <Card title="Book Search" icon="far fa-book">
+                            <Form
+                                handleInputChange={this.handleInputChange}
+                                handleFormSubmit={this.handleFormSubmit}
+                                q={this.state.q}
+                            />
+                        </Card>
+                    </Col>
+                    <Row>
+                        <Col size="md-12">
+                            <Card title="Results">
+                                {this.state.length ? (
+                                    <List>
+                                        {this.state.books.map(book => (
+                                            <Book
+                                                key={book.id}
+                                                title={book.title}
+                                                subtitle={book.subtitle}
+                                                link={book.infoLink}
+                                                authors={book.authors}
+                                                description={book.description}
+                                                image={book.image}
+                                                Button={() => (
+                                                    <button
+                                                        onClick={() => this.handleBookSave(book.id)}
+                                                        className="btn btn-primary ml-2"
+                                                    >
+                                                        Save
+                                                    </button>
+                                                )}
+                                            />
+                                        ))}
+                                    </List>
+                                ) : (
+                                    <h2 className="text-center">{this.state.message}</h2>
+                                )}
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
-          )}
-        </Container>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Home;
