@@ -11,9 +11,12 @@ import Book from "../components/Book";
 class Home extends Component {
     state = {
         books: [],
-        q: "",
+        q: "Harry Potter",
     };
 
+    componentDidMount() {
+        this.getBooks(this.state.books);
+    };
     // Create function to handle input data
     handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -24,7 +27,7 @@ class Home extends Component {
 
     // Create function to search for books through Google API
     getBooks = () => {
-        API.getBooks(this.state.q)
+        API.getBooks(this.state.books)
             .then(res =>
                 this.setState({
                     books: res.data
@@ -41,7 +44,7 @@ class Home extends Component {
     // Create function to handle form data submission
     handleFormSubmit = (event) => {
         event.preventDefault();
-        this.getBooks();
+        this.getBooks(this.state.books);
     };
 
     handleBookSave = id => {
