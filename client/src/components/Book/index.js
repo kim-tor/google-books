@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem } from "../List";
 import { Row, Col } from "../Grid";
-import "../style.css";
+import "./style.css";
 
 function Book({ title, subtitle, authors, link, description, image, Button }){
     return (
@@ -21,9 +21,9 @@ function Book({ title, subtitle, authors, link, description, image, Button }){
                 </Col>
             </Row>
             <Row>
-                <Col size ="md-6">
+                {/* <Col size ="md-6">
                     <p className="font-italic-small">Written by {author}</p>  
-                </Col>
+                </Col> */}
             </Row>
             <Row>
                 <Col size="12 sm-4 md-2">

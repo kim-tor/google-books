@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "../components/Grid/index";
+import { Container, Col, Row } from "../components/Grid/index";
 import Nav from "../components/Nav/index";
 import Jumbotron from "../components/Jumbotron/index";
-import { Input, SubmitBtn } from "../components/Search/index";
 import API from "../utils/API";
-import ResultList from "../components/ResultList/index";
+import Card from "../components/Card";
+import Form from "../components/Form";
+import { List } from "../components/List";
 import Book from "../components/Book";
 
 class Home extends Component {
@@ -62,7 +63,7 @@ class Home extends Component {
                 <Container fluid>
                     <Jumbotron />
                     <Col size="md-12">
-                        <Card title="Book Search" icon="far fa-book">
+                        <Card title="Book Search">
                             <Form
                                 handleInputChange={this.handleInputChange}
                                 handleFormSubmit={this.handleFormSubmit}
@@ -78,12 +79,12 @@ class Home extends Component {
                                         {this.state.books.map(book => (
                                             <Book
                                                 key={book.id}
-                                                title={book.title}
-                                                subtitle={book.subtitle}
-                                                link={book.infoLink}
-                                                authors={book.authors}
-                                                description={book.description}
-                                                image={book.image}
+                                                title={book.volumeInfo.title}
+                                                subtitle={book.volumeInfo.subtitle}
+                                                link={book.volumeInfo.infoLink}
+                                                authors={book.volumeInfo.authors}
+                                                description={book.volumeInfo.description}
+                                                image={book.volumeInfo.image}
                                                 Button={() => (
                                                     <button
                                                         onClick={() => this.handleBookSave(book.id)}

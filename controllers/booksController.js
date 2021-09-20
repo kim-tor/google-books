@@ -1,35 +1,31 @@
 const db = require("../models");
 
-// Defining methods for the googleBooksController
-
+// Defining methods for the bookController
 module.exports = {
-  // search
   findAll: function(req, res) {
-    db.googleBooks
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+    db.Book.find(req.query)
+      .then(dbBook => res.json(dbBook))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.googleBooks
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+    db.Book.findById(req.params.id)
+      .then(dbBook => res.json(dbBook))
       .catch(err => res.status(422).json(err));
   },
-  // save
   create: function(req, res) {
-    db.googleBooks
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
+    db.Book.create(req.body)
+      .then(dbBook => res.json(dbBook))
       .catch(err => res.status(422).json(err));
   },
-  // delete
+  update: function(req, res) {
+    db.Book.findOneAndUpdate({ id: req.params.id }, req.body)
+      .then(dbBook => res.json(dbBook))
+      .catch(err => res.status(422).json(err));
+  },
   remove: function(req, res) {
-    db.googleBooks
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+    db.Book.findById(req.params.id)
+      .then(dbBook => dbBook.remove())
+      .then(dbBook => res.json(dbBook))
       .catch(err => res.status(422).json(err));
   }
 };
