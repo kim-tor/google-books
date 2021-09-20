@@ -1,7 +1,7 @@
 import React from 'react';
 
-function SavedListItem(props) {
-    const {title, authors, image, link, description, deleteGoogleBook} = props
+function SavedListItem({title, authors, image, link, description, deleteGoogleBook})
+{
     return (
         <div>
             <div className="card">

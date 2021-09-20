@@ -32,10 +32,10 @@ class Saved extends Component {
             this.setState({
                 savedBooks: res.data
             })
-            console.log("This is the res from getBooks", res);
+            console.log(res);
         })
         .catch(err => {
-            console.log("This is the error", err);
+            console.log(err);
         })
     }
 
