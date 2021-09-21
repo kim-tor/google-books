@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container } from "../components/Grid/index";
 import Nav from "../components/Nav/index";
 import Jumbotron from "../components/Jumbotron/index";
-import {Input, SubmitBtn} from "../components/Search";
+import { Input, SubmitBtn } from "../components/Search";
 import API from "../utils/API";
 // import Results from "../components/Results";
 import ResultList from "../components/ResultList";
@@ -12,25 +12,21 @@ class Home extends Component {
         books: [],
         search: "",
     };
-
-
-
     // Create function to search for books through Google API
     searchBooks = () => {
         API.googleBooks(this.state.search)
             .then(res => {
-                console.log("This is res.data", res.data.items)
                 this.setState({
-                books: res.data.items,
-                search: ""
-            })})
+                    books: res.data.items,
+                    search: ""
+                });
+            })
             .catch(err => console.log(err));
-            
     };
 
     // Create function to handle input data
     handleInputChange = event => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         });
@@ -42,7 +38,7 @@ class Home extends Component {
         this.searchBooks();
     };
 
-    saveGoogleBook = currentBook => {
+    saveGoogleBook = (currentBook) => {
         console.log("This is the current book", currentBook);
         API.saveBook({
             id: currentBook.id,
@@ -52,8 +48,8 @@ class Home extends Component {
             image: currentBook.image,
             link: currentBook.link
         })
-        .then(res => console.log("Successful POST to DB!", res))
-        .catch(err => console.log("this is the error", err));
+            .then(res => console.log("Successful POST to DB!", res))
+            .catch(err => console.log("this is the error", err));
     }
 
     render() {
@@ -61,30 +57,30 @@ class Home extends Component {
             <div>
                 <Nav />
                 <Container fluid>
-                <Jumbotron />
-                <form>
-                    <h5>Search for books</h5>
-                    <Input 
-                        value={this.state.search}
-                        onChange={this.handleInputChange}
-                        name="search"
-                        placeholder="e.g. Harry Potter"
-                    />
-                    <SubmitBtn onClick={this.handleFormSubmit}/>
-                </form>
-                
-                {this.state.books.length ? (
-                    <ResultList 
-                    bookState={this.state.books}
-                    saveGoogleBook={this.saveGoogleBook}>
-                    </ResultList>
-                ) : (
-                    <div>
-                        <hr/>
-                    <p style={{fontStyle: "italic"}}>No results to display</p>
-                    </div>
-                )}
-                
+                    <Jumbotron />
+                    <form>
+                        <h5>Search for books</h5>
+                        <Input
+                            value={this.state.search}
+                            onChange={this.handleInputChange}
+                            name="search"
+                            placeholder="e.g. Harry Potter"
+                        />
+                        <SubmitBtn onClick={this.handleFormSubmit} />
+                    </form>
+
+                    {this.state.books.length ? (
+                        <ResultList
+                            bookState={this.state.books}
+                            saveGoogleBook={this.saveGoogleBook}>
+                        </ResultList>
+                    ) : (
+                        <div>
+                            <hr />
+                            <p style={{ fontStyle: "italic" }}>No results to display</p>
+                        </div>
+                    )}
+
                 </Container>
             </div>
         )
