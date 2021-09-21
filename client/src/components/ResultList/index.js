@@ -3,10 +3,8 @@ import React, { Component } from 'react'
 import ResultListItem from "../ResultListItem";
 
 class ResultList extends Component {
-
-
     render() {
-        console.log("Props", this.props.bookState)
+        // console.log("Props", this.props.bookState)
         return (
             this.props.bookState.map((book) => (
             <ResultListItem 

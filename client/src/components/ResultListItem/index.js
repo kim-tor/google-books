@@ -38,8 +38,8 @@ class ResultListItem extends Component {
     }
     
     render () {
-        
-        // const {book} = this.props
+         // eslint-disable-next-line no-unused-vars
+         const {book} = this.props
 
         return (
 
