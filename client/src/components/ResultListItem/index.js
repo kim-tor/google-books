@@ -7,15 +7,15 @@ class ResultListItem extends Component {
     bgColor: "",
     color: "",
     text: "Save"
-  }
+  };
 
   componentDidMount = () => {
     this.setState({
       mounted: true
-    })
-  }
+    });
+  };
 
-  getStyle = () => {
+  setSave = () => {
     if (this.state.text === "Save") {
       this.setState({
         bgColor: "#00E000",
@@ -33,14 +33,13 @@ class ResultListItem extends Component {
   }
 
   onClickSave = () => {
-    this.props.saveGoogleBook(this.props)
-    this.getStyle();
+    this.props.saveBookToDB(this.props)
+    this.setSave();
   }
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { book } = this.props;
-
+    //  const { book } = this.props;
     return (
       <div className="card-group">
         <div className="card mb-2">

@@ -4,7 +4,6 @@ import Nav from "../components/Nav/index";
 import Jumbotron from "../components/Jumbotron/index";
 import { Input, SubmitBtn } from "../components/Search";
 import API from "../utils/API";
-// import Results from "../components/Results";
 import ResultList from "../components/ResultList";
 
 class Home extends Component {
@@ -38,19 +37,18 @@ class Home extends Component {
         this.searchBooks();
     };
 
-    saveGoogleBook = (currentBook) => {
-        console.log("This is the current book", currentBook);
+    saveBookToDB = (currentBook) => {
         API.saveBook({
-            id: currentBook.id,
-            title: currentBook.title,
-            authors: currentBook.authors,
-            description: currentBook.description,
-            image: currentBook.image,
-            link: currentBook.link,
+          id: currentBook.id,
+          title: currentBook.title,
+          authors: currentBook.authors,
+          description: currentBook.description,
+          image: currentBook.image,
+          link: currentBook.link,
         })
-            .then((res) => console.log('Successful POST to DB!'))
-            .catch((err) => console.log('ERR ==>', err));
-    };
+          .then((res) => console.log('Successful POST to DB!', res))
+          .catch((err) => console.log('ERR ==>', err));
+      };
     render() {
         return (
             <>
@@ -72,7 +70,7 @@ class Home extends Component {
                         {this.state.books.length ? (
                             <ResultList
                                 bookState={this.state.books}
-                                saveGoogleBook={this.saveGoogleBook}>
+                                saveBookToDB={this.saveBookToDB}>
                             </ResultList>
                         ) : (
                             <div>
