@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import {Container} from "../Grid";
 
 class ResultListItem extends Component {
 
@@ -38,9 +39,9 @@ class ResultListItem extends Component {
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
-    //  const { book } = this.props;
+    
     return (
+      <Container>
       <div className="card-group">
         <div className="card mb-2">
           <div className="d-flex flex-row align-items-center justify-content-between card-header">
@@ -82,6 +83,7 @@ class ResultListItem extends Component {
           </div>
         </div>
       </div>
+      </Container>
     );
   }
 

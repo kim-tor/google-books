@@ -1,10 +1,11 @@
    
-import React from 'react';
-
+import React from "react";
+import {Container} from "../Grid";
 function SaveListItem(props) {
     const {title, authors, image, link, description, deleteGoogleBook} = props
     return (
         <div>
+            <Container>
             <div className="card">
                 <div className="card-header"></div>
                 <div className="card-body">
@@ -13,9 +14,10 @@ function SaveListItem(props) {
                     <p className="card-text" >{description}</p>
                     <p style={{fontStyle: "italic"}}>Author(s): {authors}</p>
                     <a href={link} target="_blank" rel="noopener noreferrer" className="btn" style={{marginRight: "6px", backgroundColor: "rgb(33, 150, 243)", color: "white"}}>View Book</a>
-                    <button onClick={deleteGoogleBook.bind(this, props)} className="btn btn-primary">Delete</button>
+                    <button onClick={deleteGoogleBook.bind(this, props)} className="btn btn-outline-danger">Delete</button>
                 </div>
             </div>
+            </Container>
         </div>
     )
 }
