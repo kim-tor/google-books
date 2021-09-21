@@ -46,12 +46,11 @@ class Home extends Component {
             authors: currentBook.authors,
             description: currentBook.description,
             image: currentBook.image,
-            link: currentBook.link
+            link: currentBook.link,
         })
-            .then(res => console.log("Successful POST to DB!", res))
-            .catch(err => console.log("this is the error", err));
-    }
-
+            .then((res) => console.log('Successful POST to DB!',))
+            .catch((err) => console.log('ERR ==>', err));
+    };
     render() {
         return (
             <div>

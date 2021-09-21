@@ -32,31 +32,60 @@ class ResultListItem extends Component {
         }   
     }
 
-    onClickFunc = () => {
+    onClickSave = () => {
         this.props.saveGoogleBook(this.props)
         this.getStyle();
     }
     
     render () {
+
          // eslint-disable-next-line no-unused-vars
-         const {book} = this.props
+        const {book} = this.props
 
-        return (
-
+       return (
+      <div className="card-group">
+        <div className="card mb-2">
+          <div className="d-flex flex-row align-items-center justify-content-between card-header">
             <div>
-                <div className="card">
-                    <div className="card-header"></div>
-                    <div className="card-body">
-                        <img src={this.props.image} style={{maxWidth: "100px"}} alt="book"/>
-                        <h5 className="card-title" style={{margin: "10px 0"}}>{this.props.title}</h5>
-                        <p className="card-text" >{this.props.description}</p>
-                        <p style={{fontStyle: "italic"}}>Author(s): {this.props.authors}</p>
-                        <a href={this.props.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{marginRight: "6px"}}>View Book</a>
-                        <button onClick={this.onClickFunc} style={{ backgroundColor: this.state.bgColor, color: this.state.color }} className="btn">{this.state.text}</button>
-                    </div>
-                </div>
+              <h5 className="card-title">{this.props.title}</h5>
+              <small>
+                {/* <span className="material-icons" style={{fontSize: '20px'}}>menu_book</span>{' '} */}
+                {this.props.authors}
+              </small>
             </div>
-        )
+            <img
+              src={this.props.image}
+              style={{ maxWidth: '100px' }}
+              alt="book"
+            />
+          </div>
+          <div className="card-body">
+            <small className="card-text">{this.props.description}</small>
+          </div>
+          <div className="card-footer">
+            <a
+              href={this.props.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-primary"
+            >
+              View Book
+            </a>
+            <button
+              onClick={this.onClickSave}
+              style={{
+                backgroundColor: this.state.bgColor,
+                color: this.state.color,
+                marginLeft: '0.5rem',
+              }}
+              className="btn btn-outline-success"
+            >
+              {this.state.text}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
     }
     
 }
