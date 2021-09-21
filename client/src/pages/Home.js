@@ -48,40 +48,42 @@ class Home extends Component {
             image: currentBook.image,
             link: currentBook.link,
         })
-            .then((res) => console.log('Successful POST to DB!',))
+            .then((res) => console.log('Successful POST to DB!'))
             .catch((err) => console.log('ERR ==>', err));
     };
     render() {
         return (
-            <div>
-                <Nav />
-                <Container fluid>
-                    <Jumbotron />
-                    <form>
-                        <h5>Search for books</h5>
-                        <Input
-                            value={this.state.search}
-                            onChange={this.handleInputChange}
-                            name="search"
-                            placeholder="e.g. Harry Potter"
-                        />
-                        <SubmitBtn onClick={this.handleFormSubmit} />
-                    </form>
+            <>
+                <div>
+                    <Nav />
+                    <Container fluid>
+                        <Jumbotron />
+                        <form>
+                            <h5>Search for books</h5>
+                            <Input
+                                value={this.state.search}
+                                onChange={this.handleInputChange}
+                                name="search"
+                                placeholder="e.g. Harry Potter"
+                            />
+                            <SubmitBtn onClick={this.handleFormSubmit} />
+                        </form>
 
-                    {this.state.books.length ? (
-                        <ResultList
-                            bookState={this.state.books}
-                            saveGoogleBook={this.saveGoogleBook}>
-                        </ResultList>
-                    ) : (
-                        <div>
-                            <hr />
-                            <p style={{ fontStyle: "italic" }}>No results to display</p>
-                        </div>
-                    )}
+                        {this.state.books.length ? (
+                            <ResultList
+                                bookState={this.state.books}
+                                saveGoogleBook={this.saveGoogleBook}>
+                            </ResultList>
+                        ) : (
+                            <div>
+                                <hr />
+                                <p style={{ fontStyle: "italic" }}>No results to display</p>
+                            </div>
+                        )}
 
-                </Container>
-            </div>
+                    </Container>
+                </div>
+            </>
         )
     }
 };
