@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Col, Row } from "../components/Grid/index";
+import { Container } from "../components/Grid/index";
 import Nav from "../components/Nav/index";
 import Jumbotron from "../components/Jumbotron/index";
 import {Input, SubmitBtn} from "../components/Search";
 import API from "../utils/API";
-import Results from "../components/Results";
+// import Results from "../components/Results";
 import ResultList from "../components/ResultList";
 
 class Home extends Component {
@@ -17,7 +17,7 @@ class Home extends Component {
 
     // Create function to search for books through Google API
     searchBooks = () => {
-        API.getBooks(this.state.search)
+        API.googleBooks(this.state.search)
             .then(res => {
                 console.log("This is res.data", res.data.items)
                 this.setState({

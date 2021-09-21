@@ -26,7 +26,7 @@ class Saved extends Component {
     }
 
     getBooks = () => {
-        API.savedBooks()
+        API.getBooks()
         .then(res => {
             this.setState({
                 savedBooks: res.data
@@ -46,7 +46,7 @@ class Saved extends Component {
                 <Container fluid>
                 <Jumbotron />
                 {this.state.savedBooks.length ? (
-                    <SavedList 
+                    <SavedList
                     bookState={this.state.savedBooks}
                     deleteGoogleBook={this.deleteGoogleBook}
                     >
