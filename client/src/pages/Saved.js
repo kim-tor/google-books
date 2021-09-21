@@ -9,7 +9,7 @@ class Saved extends Component {
     state = {
         savedBooks: [],
     }
-
+    
     componentDidMount() {
         API.savedBooks()
             .then(savedBooks => this.setState({ savedBooks: savedBooks }))
@@ -24,10 +24,12 @@ class Saved extends Component {
                     <Jumbotron />
                     <h2>Saved books</h2>
                     <Results books={this.state.savedBooks} />
-
+               
                 </Container>
+                
             </div>
         )
+        
     }
 }
 
